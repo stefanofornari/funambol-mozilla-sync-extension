@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (C) 2003-2007 Funambol
+ -
+ - This program is free software; you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation; either version 2 of the License, or
+ - (at your option) any later version.
+ -
+ - This program is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ -
+ - You should have received a copy of the GNU General Public License
+ - along with this program; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ -
+ -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://funambol/skin/funambol-style.css" type="text/css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="Funambol Mozilla Sync Client"
+        class="sync-dialog"
+        resizeble="no"
+        onload="initSyncDialog();"
+        onclose="removeSyncObservers();">
+
+  <script type="application/x-javascript" src="chrome://funambol/content/utils.js"      />
+  <script type="application/x-javascript" src="chrome://funambol/content/sync-dialog.js"/>
+  <script type="application/x-javascript" src="chrome://funambol/content/sync-client.js"/>
+  <script type="application/x-javascript" src="chrome://funambol/content/date-format.js"/>
+
+  <keyset id="syncDialogKeys">
+    <!-- File Menu -->
+    <key id="key_synchronize" key="S" modifiers="accel,control" oncommand="synchronize();"/>
+    <key id="key_close" key="C" modifiers="accel,control" oncommand="window.close();"/>
+
+    <!-- Tools Menu -->
+    <key id="key_options" key="T" modifiers="accel,control" oncommand="showFunambolOptions();"/>
+    <key id="key_revover" key="R" modifiers="accel,control" oncommand="showRecoverDialog();"/>
+    <key id="key_logging" key="L" modifiers="accel,control" oncommand="showFunambolOptions('logBox');"/>
+
+    <!-- Help Menu -->
+    <key id="key_help" key="A" modifiers="accel,control" oncommand="showAboutDialog();"/>
+  </keyset>
+
+  <toolbox flex="1">
+    <menubar>
+      <menu label="File" id="menu-file">
+        <menupopup>
+          <menuitem label="Synchronize" acceltext="Ctrl+S" accesskey="S" oncommand="synchronize();"/>
+          <menuseparator />
+          <menuitem label="Close" acceltext="Ctrl+C" accesskey="C" oncommand="window.close();"/>
+        </menupopup>
+      </menu>
+      <menu label="Tools" id="menu-tools">
+        <menupopup>
+          <menuitem label="Options..." acceltext="Ctrl+T" accesskey="T" oncommand="showFunambolOptions();"/>
+          <menuseparator />
+          <menuitem label="Recover..." acceltext="Ctrl+R" accesskey="R" oncommand="showRecoverDialog();"/>
+          <menuitem label="Logging..." acceltext="Ctrl+L" accesskey="L" oncommand="showFunambolOptions('logBox');"/>
+        </menupopup>
+      </menu>
+      <menu label="Help" id="menu-help">
+        <menupopup>
+          <menuitem label="About Funambol Mozilla Sync Client..." acceltext="Ctrl+A" accesskey="A" oncommand="showAboutDialog();"/>
+        </menupopup>
+      </menu>
+    </menubar>
+  </toolbox>
+  <vbox class="sync-group">
+    <hbox id="syncAllBox" class="sync-button-base syncall-button"
+          onmouseover="syncAllOnMouseOver();"
+          onmouseout="syncAllOnMouseOut();"
+          onclick="synchronize();">
+      <vbox align="center">
+        <image src="chrome://funambol/skin/images/icon_logo.ico"/>
+      </vbox>
+      <vbox>
+        <label id="syncAllTitle" class="syncall-button-title"/>
+      </vbox>
+      <spacer flex="1"/>
+      <vbox align="center">
+        <image id="syncAllArrows" src="chrome://funambol/skin/images/icon_sync_all_blue.ico" class="hidden"/>
+      </vbox>
+    </hbox>
+    <hbox id="contactBox" class="sync-button-base sync-button">
+      <vbox align="center">
+        <image id="contactIcon" src="chrome://funambol/skin/images/contact.ico" class="sync-button-icon"/>
+      </vbox>
+      <vbox>
+        <label id="contactTitle" class="sync-button-title" value="Contacts"/>
+        <label id="contactStatus" class="sync-button-status" value="Sync status" crop="end"/>
+      </vbox>
+      <spacer flex="1"/>
+      <vbox align="center">
+        <image id="contactArrows" src="chrome://funambol/skin/images/arrows32a.ico" class="hidden"/>
+      </vbox>
+    </hbox>
+    <hbox id="eventBox" class="sync-button-base sync-button">
+      <vbox align="center">
+        <image id="eventIcon" src="chrome://funambol/skin/images/event.ico" class="sync-button-icon"/>
+      </vbox>
+      <vbox>
+        <label id="eventTitle" class="sync-button-title" value="Calendar"/>
+        <label id="eventStatus" class="sync-button-status" value="Sync status" crop="end"/>
+      </vbox>
+      <spacer flex="1"/>
+      <vbox align="center">
+        <image id="eventArrows" src="chrome://funambol/skin/images/arrows32a.ico" class="hidden"/>
+      </vbox>
+    </hbox>
+    <hbox id="taskBox" class="sync-button-base sync-button">
+      <vbox align="center">
+        <image id="taskIcon" src="chrome://funambol/skin/images/task.ico" class="sync-button-icon"/>
+      </vbox>
+      <vbox>
+        <label id="taskTitle" class="sync-button-title" value="Tasks"/>
+        <label id="taskStatus" class="sync-button-status" value="Sync status" crop="end"/>
+      </vbox>
+      <spacer flex="1"/>
+      <vbox align="center">
+        <image id="taskArrows" src="chrome://funambol/skin/images/arrows32a.ico" class="hidden"/>
+      </vbox>
+    </hbox>
+  </vbox>
+  <statusbar>
+    <statusbarpanel label="Ready" flex="1" id="funambol-sync-status"/>
+  </statusbar>
+</window>

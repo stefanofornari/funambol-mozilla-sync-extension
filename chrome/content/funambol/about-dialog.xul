@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (C) 2003-2007 Funambol
+ -  
+ - This program is free software; you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation; either version 2 of the License, or
+ - (at your option) any later version.
+ -
+ - This program is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ -
+ - You should have received a copy of the GNU General Public License
+ - along with this program; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+ - 
+ -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog
+    id="aboutDialog"
+    title="About Funambol Mozilla Sync Client"
+    buttons="accept"
+    ondialogaccept="return true;"
+    onload="com.funambol.about.onLoadAboutDialog()" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://funambol/content/utils.js"/>
+	<script type="application/x-javascript" src="chrome://funambol/content/about-dialog.js"/>
+	
+	<groupbox flex="1" style="-moz-appearance: none; background-color:white;">
+		<vbox id="funCredits"  align="center" width="250">
+			<spacer height="30"/>
+			<image src="chrome://funambol/skin/images/icon_thunderbird_128x128.png" id="funambolLogo"/>
+			<spacer height="30"/>
+			<label value="Funambol Mozilla Sync Client" style="font-weight: bold;"/>
+      <label value="Version 1.0b3" style="font-weight: bold;"/>
+			<spacer height="6"/>
+			<label value="Copyright (c) 2007-2009 Funambol, Inc."/>
+			<label value="All rights reserved."/>
+			<spacer height="6"/>
+			<label class="text-link" href="http://www.funambol.com" value="www.funambol.com" id="url" style="font-weight: bold;"/>	
+			<spacer height="10"/>
+		</vbox>
+	</groupbox>
+</dialog>
+

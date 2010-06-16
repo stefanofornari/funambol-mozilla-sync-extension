@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (C) 2003-2007 Funambol
+ -  
+ - This program is free software; you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation; either version 2 of the License, or
+ - (at your option) any later version.
+ -
+ - This program is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ -
+ - You should have received a copy of the GNU General Public License
+ - along with this program; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+ - 
+ -->
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://funambol/skin/funambol-style.css" type="text/css"?>
+
+<overlay id="FunambolOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="chrome://funambol/content/funambol-overlay-toolbar.js" />
+  <script type="application/x-javascript" src="chrome://funambol/content/sync-client.js"/>
+
+  <!-- Thunderbird toolbar overlay -->
+  <toolbarpalette id="MailToolbarPalette">
+    <toolbarbutton id="funambol-button"/>
+  </toolbarpalette>
+
+  <!-- Thunderbird addressbook toolbar overlay -->
+  <toolbarpalette id="AddressBookToolbarPalette">
+    <toolbarbutton id="funambol-button"/>
+  </toolbarpalette>
+  
+  <!-- Sunbird toolbar overlay -->
+  <toolbarpalette id="calendarToolbarPalette">
+    <toolbarbutton id="funambol-button"/>
+  </toolbarpalette>
+
+  <!-- Funambol button -->
+  <toolbarbutton id="funambol-button"
+	               class="toolbarbutton-1"
+	               label="Synchronize"
+	               tooltiptext="Start funambol sync"
+	               type="menu-button"
+	               oncommand="synchronizeToolbar();">
+    <menupopup id="funambol-toolbar-popup">
+      <menuitem id="funambol-sync" label="Sync All" tooltiptext="Start sync"/>
+      <menuitem id="funambol-goto" label="Go to..." tooltiptext="Go to Funambol Mozilla Sync Client" oncommand="showSyncDialogToolbar();"/>
+      <menuitem id="funambol-options" label="Options..." tooltiptext="Customize the sync options" oncommand="showOptionsToolbar();"/>
+    </menupopup>
+  </toolbarbutton>
+
+  <!-- Set button order for Thunderbird -->
+  <toolbar id="mail-bar2" defaultset="button-getmsg,button-newmsg,button-address,separator,button-reply,button-replyall,button-forward,separator,button-tag,button-delete,button-junk,button-print,separator,button-goback,button-goforward,separator,funambol-button,spring,search-container"/>
+  <toolbar id="ab-bar2" defaultset="button-newcard,button-newlist,separator,button-editcard,button-newmessage,separator,button-abdelete,separator,funambol-button,spring,search-container"/>
+                                   
+    <!-- Set button order for Sunbird -->
+  <toolbar id="calendar-bar" defaultset="calendar-new-event-button,calendar-new-task-button,calendar-edit-button,calendar-delete-button,separator,calendar-go-to-today-button,separator,calendar-day-view-button,calendar-week-view-button,calendar-multiweek-view-button,calendar-month-view-button,separator,calendar-unifinder-button,separator,funambol-button,spring,throbber-box"/>
+  
+  <!-- Set button order for Lightning -->
+  <toolbar id="calendar-toolbar" defaultset="calendar-new-event-button,calendar-new-task-button,calendar-show-todaypane-button,separator,calendar-go-to-today-button,separator,calendar-day-view-button,calendar-week-view-button,calendar-multiweek-view-button,calendar-month-view-button,separator,calendar-unifinder-button,separator,calendar-delete-button,calendar-print-button,separator,calendar-remote-reload-button,separator,funambol-button,spring"/>
+  <toolbar id="task-toolbar" defaultset="task-new-event-button,task-new-task-button,task-button-address,task-show-todaypane-button,separator,task-category-button,task-progress-button,task-priority-button,separator,task-delete-button,task-print-button,separator,task-remote-reload-button,separator,funambol-button,spring"/>
+
+</overlay>

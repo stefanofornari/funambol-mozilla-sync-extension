@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (C) 2003-2007 Funambol
+ -  
+ - This program is free software; you can redistribute it and/or modify
+ - it under the terms of the GNU General Public License as published by
+ - the Free Software Foundation; either version 2 of the License, or
+ - (at your option) any later version.
+ -
+ - This program is distributed in the hope that it will be useful,
+ - but WITHOUT ANY WARRANTY; without even the implied warranty of
+ - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ - GNU General Public License for more details.
+ -
+ - You should have received a copy of the GNU General Public License
+ - along with this program; if not, write to the Free Software
+ - Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+ - 
+ -->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<dialog id="recoverDialog" title="Recover"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept,cancel"
+        buttonlabelaccept="Recover"
+        onload="com.funambol.recover.init();"
+        ondialogaccept="return com.funambol.recover.doRecover();">
+
+    <script type="application/x-javascript" src="chrome://funambol/content/sync-client.js"/>
+	<script type="application/x-javascript" src="chrome://funambol/content/recover-dialog.js"/>
+    <script type="application/x-javascript" src="chrome://funambol/content/utils.js"/>
+
+	<description width="310">
+		Recover performs a "full sync" operation to refresh all data in Mozilla or on the server.
+	</description>
+	<groupbox flex="1" id="directionGroup" width="310">
+		<caption label="Direction"/>
+		<vbox align="center">
+			<radiogroup id="syncFrom">
+				<radio id="syncFromMozilla" label="Replace all of the server data with data from Mozilla" selected="true"/>
+				<radio id="syncFromServer" label="Replace all of the Mozilla data with data from the server"/>
+			</radiogroup>
+      <spacer height="5"/>
+		</vbox>
+	</groupbox>
+	<groupbox flex="1" id="itemsGroup" width="310">
+		<caption label="Items"/>
+		<hbox align="center">
+			<checkbox id="contactCheck" label="Contacts"/>
+			<spacer width="5"/>
+			<checkbox id="eventCheck" label="Calendar"/>
+      <spacer width="5"/>
+      <checkbox id="taskCheck" label="Tasks"/>
+		</hbox>
+    <spacer height="5"/>
+	</groupbox>
+</dialog>
